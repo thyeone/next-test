@@ -20,24 +20,23 @@ type Props = {
   };
 };
 
-export default function Detail(data: Props) {
-  const result = data.data;
+export default function Detail({ data }: Props) {
   const router = useRouter();
 
   const [title, id]: any = router.query.detail || [];
-  console.log(result);
+  console.log(data);
   return (
     <>
       <Seo title={title} />
-      <h1 style={{ color: "red" }}>{result.title}</h1>
+      <h1 style={{ color: "red" }}>{data.title}</h1>
     </>
   );
 }
 
 export const getServerSideProps = async (ctx: any) => {
   const id = ctx.params.detail[1];
-  const data = await axios(`http://localhost:3000/api/${id}`).then(
-    (response) => response.data
+  const data = await fetch(`http://localhost:3000/api/${id}`).then((res) =>
+    res.json()
   );
   return {
     props: {

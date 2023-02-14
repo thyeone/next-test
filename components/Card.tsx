@@ -1,29 +1,13 @@
-import { Products } from "@/pages/api/requests";
+import { IProduct, IProductResult } from "@/typing";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { dehydrate, QueryClient, useQuery } from "react-query";
 import styled from "styled-components";
 
-export interface IProduct {
-  brand: string;
-  category: string;
-  description: string;
-  discountPercentage: number;
-  id: number;
-  images: string[];
-  price: number;
-  rating: number;
-  stock: number;
-  thumbnail: string;
-  title: string;
-}
+type Props = {
+  data?: IProduct[];
+};
 
-export interface IProductResult {
-  products: IProduct[];
-}
-
-export default function Card() {
-  const { data } = useQuery<IProductResult>(["products"], Products);
+export default function Card({ data }: Props) {
   const router = useRouter();
   const cardClick = (id: number, title: string, category: string) => {
     router.push(`/${category}/${title}/${id}`);
@@ -32,7 +16,7 @@ export default function Card() {
   return (
     <Container>
       <Wrapper>
-        {data?.products.map((item) => (
+        {data?.map((item) => (
           <List
             key={item.id}
             onClick={() => cardClick(item.id, item.title, item.category)}
@@ -47,17 +31,6 @@ export default function Card() {
     </Container>
   );
 }
-
-export const getServerSideProps = async () => {
-  const queryClient = new QueryClient();
-  await queryClient.prefetchQuery(["products"], Products);
-
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
-  };
-};
 
 const Container = styled.div`
   display: flex;
