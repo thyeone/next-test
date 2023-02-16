@@ -5,7 +5,7 @@ import { IProductResult } from "@/typing";
 import { ReactElement } from "react";
 import { dehydrate, QueryClient, useQuery } from "react-query";
 import styled from "styled-components";
-import { Products } from "./api/requests";
+import { Products } from "../utils/requests";
 
 export default function Home() {
   const { data } = useQuery<IProductResult>(["products"], Products);

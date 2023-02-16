@@ -11,6 +11,9 @@ const nextConfig = {
       },
     ];
   },
+  images: {
+    domains: ["i.dummyjson.com"],
+  },
 };
 
 module.exports = nextConfig;
