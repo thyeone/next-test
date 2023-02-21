@@ -31,9 +31,9 @@ const Nav = styled.header`
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  width: 30%;
-  background-color: white;
-  color: black;
+  width: 50%;
+  background-color: #000;
+  color: #fff;
   padding: 20px 0;
   a {
     cursor: pointer;

@@ -5,20 +5,20 @@ import { IProductResult } from "@/typing";
 import { ReactElement } from "react";
 import { dehydrate, QueryClient, useQuery } from "react-query";
 import styled from "styled-components";
-import { Products } from "../utils/requests";
+import { Products, requests } from "../utils/requests";
 
-export default function Home() {
-  const { data } = useQuery<IProductResult>(["products"], Products);
+export default function Home({ data }: IProductResult) {
+  // const { data } = useQuery<IProductResult>(["products"], Products);
   return (
     <Wrapper>
       <Seo title="Home" />
-      <Card data={data?.products} />
+      <Card data={data} />
     </Wrapper>
   );
 }
 
 // react-query with hydrate
-export const getServerSideProps = async () => {
+/* export const getStaticProps = async () => {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery(["products"], Products);
 
@@ -27,17 +27,17 @@ export const getServerSideProps = async () => {
       dehydratedState: dehydrate(queryClient),
     },
   };
-};
+}; */
 
 // normal fetching
-/* export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const data = await fetch(requests.fetchProducts).then((res) => res.json());
   return {
     props: {
       data: data.products,
     },
   };
-}; */
+};
 
 Home.getLayout = function getLayout(page: ReactElement) {
   return <Layout>{page}</Layout>;

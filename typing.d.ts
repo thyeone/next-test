@@ -13,5 +13,5 @@ export interface IProduct {
 }
 
 export interface IProductResult {
-  products: IProduct[];
+  data: IProduct[];
 }

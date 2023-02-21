@@ -25,6 +25,7 @@ type Props = {
 export default function Detail({ data }: Props) {
   const router = useRouter();
   const [title, id]: any = router.query.detail || [];
+  console.log(router);
   console.log(data);
   return (
     <>

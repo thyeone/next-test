@@ -25,6 +25,10 @@ export default function Card({ data }: Props) {
             <Link href={`/${item.category}/${item.title}/${item.id}`}>
               <Title>{item.title}</Title>
             </Link>
+            <div>
+              <p className="brand">{item.brand}</p>
+              <p className="price">${item.price}</p>
+            </div>
           </List>
         ))}
       </Wrapper>
@@ -58,6 +62,20 @@ const List = styled.div`
       transform: scale(1.05) translateY(-10px);
     }
   }
+  .brand {
+    color: #8d8d8d;
+    font-weight: bold;
+  }
+  .price {
+    color: skyblue;
+    font-size: 17px;
+  }
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
 `;
 
 const Title = styled.h1`
@@ -65,5 +83,6 @@ const Title = styled.h1`
   font-size: 18px;
   text-align: center;
   margin-top: 30px;
-  color: #fff;
+  margin-bottom: 20px;
+  color: #5060b2;
 `;
