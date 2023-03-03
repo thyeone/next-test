@@ -1,10 +1,9 @@
-import { Layout } from "@/components/Layout";
 import { GlobalStyle } from "@/styles/GlobalStyle";
 import { NextPage } from "next";
 import type { AppProps } from "next/app";
 import React, { ReactElement, ReactNode } from "react";
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
-import { RecoilRoot } from "recoil";
+import "../styles/globals.css";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;

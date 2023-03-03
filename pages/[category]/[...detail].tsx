@@ -30,7 +30,7 @@ export default function Detail({ data }: Props) {
   return (
     <>
       <Seo title={title} />
-      <Box>
+      <div className="w-50vw bg-white flex justify-center mx-auto my-0 p-40 rounded-[9px] ">
         <List>
           <div>
             <span className="title">{data.title}</span>
@@ -50,21 +50,11 @@ export default function Detail({ data }: Props) {
             <p className="description">{data.description}</p>
           </div>
         </List>
-      </Box>
+      </div>
     </>
   );
 }
 
-const Box = styled.div`
-  width: 50vw;
-  background-color: white;
-  display: flex;
-  justify-content: center;
-  margin: 0 auto;
-  margin-top: 50px;
-  padding: 40px;
-  border-radius: 9px;
-`;
 const List = styled.div`
   display: flex;
   flex-direction: column;
