@@ -14,75 +14,30 @@ export default function Card({ data }: Props) {
   };
 
   return (
-    <Container>
-      <Wrapper>
+    <div className="flex justify-center mx-auto my-0 w-[40%]">
+      <div className="grid grid-cols-2 gap-[30px] cursor-pointer">
         {data?.map((item) => (
-          <List
+          <div
+            className="mt-[50px]"
             key={item.id}
             onClick={() => cardClick(item.id, item.title, item.category)}
           >
-            <img src={item.images[0]} />
+            <img
+              src={item.images[0]}
+              className="w-[300px] h-[300px] transition-[transform 0.2s ease-in-out] object-cover rounded-[8px] hover:transform-scale-[1.05] "
+            />
             <Link href={`/${item.category}/${item.title}/${item.id}`}>
-              <Title>{item.title}</Title>
+              <h1 className="font-semibold text-[18px] text-center mt-[30px] mb-[20px] text-[#5060b2]">
+                {item.title}
+              </h1>
             </Link>
-            <div>
-              <p className="brand">{item.brand}</p>
-              <p className="price">${item.price}</p>
+            <div className="flex flex-col gap-[15px] text-center">
+              <p className="text-[#8d8d8d] font-semibold">{item.brand}</p>
+              <p className="text-[skyblue] text-[17px]">${item.price}</p>
             </div>
-          </List>
+          </div>
         ))}
-      </Wrapper>
-    </Container>
+      </div>
+    </div>
   );
 }
-
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  margin: 0 auto;
-  width: 30%;
-`;
-
-const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  cursor: pointer;
-`;
-
-const List = styled.div`
-  margin-top: 50px;
-  img {
-    width: 300px;
-    height: 300px;
-    transition: transform 0.2s ease-in-out;
-    object-fit: cover;
-    border-radius: 8px;
-    :hover {
-      transform: scale(1.05) translateY(-10px);
-    }
-  }
-  .brand {
-    color: #8d8d8d;
-    font-weight: bold;
-  }
-  .price {
-    color: skyblue;
-    font-size: 17px;
-  }
-  > div {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    text-align: center;
-  }
-`;
-
-const Title = styled.h1`
-  font-weight: 600;
-  font-size: 18px;
-  text-align: center;
-  margin-top: 30px;
-  margin-bottom: 20px;
-  color: #5060b2;
-`;

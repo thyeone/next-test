@@ -1,4 +1,3 @@
-import { GlobalStyle } from "@/styles/GlobalStyle";
 import { NextPage } from "next";
 import type { AppProps } from "next/app";
 import React, { ReactElement, ReactNode } from "react";
@@ -19,7 +18,6 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   return getLayout(
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
-        <GlobalStyle />
         <Component {...pageProps} />
       </Hydrate>
     </QueryClientProvider>

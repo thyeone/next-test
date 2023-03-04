@@ -1,54 +1,26 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import styled from "styled-components";
 
 export default function Header() {
   const router = useRouter();
   return (
-    <Nav>
-      <Menus>
-        <Menu>
-          <Link href="/">
-            <span className={router.pathname === "/" ? "isActive" : ""}>
+    <header className="flex justify-center align-middle mx-auto my-0 w-1/2 bg-black text-white px-0 py-[20px]">
+      <ul className="flex align-middle gap-[20px]">
+        <li className="text-[21px]">
+          <Link href="/" className="cursor-pointer">
+            <span className={router.pathname === "/" ? "text-[red]" : ""}>
               Home
             </span>
           </Link>
-        </Menu>
-        <Menu>
-          <Link href="/about">
-            <span className={router.pathname === "/about" ? "isActive" : ""}>
+        </li>
+        <li className="text-[21px]">
+          <Link href="/about" className="cursor-pointer">
+            <span className={router.pathname === "/about" ? "text-[red]" : ""}>
               About
             </span>
           </Link>
-        </Menu>
-      </Menus>
-    </Nav>
+        </li>
+      </ul>
+    </header>
   );
 }
-
-const Nav = styled.header`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  width: 50%;
-  background-color: #000;
-  color: #fff;
-  padding: 20px 0;
-  a {
-    cursor: pointer;
-  }
-  .isActive {
-    color: red;
-  }
-`;
-
-const Menus = styled.ul`
-  display: flex;
-  align-items: center;
-  gap: 20px;
-`;
-
-const Menu = styled.li`
-  font-size: 21px;
-`;
