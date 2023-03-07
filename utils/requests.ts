@@ -1,16 +1,12 @@
 import axios from "axios";
 
-const BASE_URL = "https://dummyjson.com/products";
-
 export const requests = {
-  fetchProducts: `${BASE_URL}`,
+  fetchProducts: `${process.env.BASE_URL}`,
 };
-
-export const productDetail = () => {};
 
 // for "react-query"
 export const Products = async () => {
-  return await axios(`https://dummyjson.com/products`).then(
+  return await axios(`${process.env.BASE_URL}`).then(
     (response) => response.data
   );
 };
