@@ -1,10 +1,11 @@
 import { Layout } from "@/components/Layout";
 import Seo from "@/components/Seo";
 import { useRouter } from "next/router";
-import { ReactElement } from "react";
+import { ReactElement, useState } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import { baseUrl } from "@/constants/url";
+import Modal from "@/components/Modal";
 
 type Props = {
   data: {
@@ -23,16 +24,18 @@ type Props = {
 };
 
 export default function Detail({ data }: Props) {
+  const [modal, setModal] = useState(false);
   const router = useRouter();
   const [title, id]: any = router.query.detail || [];
-  console.log(router);
-  console.log(data);
+  const showModal = () => {
+    setModal(true);
+  };
   return (
     <>
       <Seo title={title} />
       <div className="w-50vw bg-white flex justify-center mx-auto my-0 p-40 rounded-[9px]">
         <div className="flex flex-col justify-center mx-auto my-0 text-[black]">
-          <div className="text-center inline-block">
+          <div className="inline-block text-center">
             <span className="text-[24px] font-semibold">{data.title}</span>
             <span className="ml-[5px] font-light">({data.brand})</span>
           </div>
@@ -41,7 +44,8 @@ export default function Detail({ data }: Props) {
             alt={data.title}
             width={300}
             height={300}
-            className="mx-auto my-[20px]"
+            className="mx-auto my-[20px] cursor-pointer"
+            onClick={showModal}
           />
           <div className="flex flex-col justify-center gap-[10px]">
             <span className="text-[20px] font-semibold text-center">
@@ -54,6 +58,7 @@ export default function Detail({ data }: Props) {
           </div>
         </div>
       </div>
+      {modal && <Modal setModal={setModal} id={id} title={data.title} />}
     </>
   );
 }

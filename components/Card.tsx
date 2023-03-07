@@ -1,7 +1,7 @@
 import { IProduct, IProductResult } from "@/typing";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import styled from "styled-components";
 
 type Props = {
   data?: IProduct[];
@@ -22,9 +22,12 @@ export default function Card({ data }: Props) {
             key={item.id}
             onClick={() => cardClick(item.id, item.title, item.category)}
           >
-            <img
+            <Image
               src={item.images[0]}
-              className="w-[300px] h-[300px] transition-[transform 0.2s ease-in-out] object-cover rounded-[8px] hover:transform-scale-[1.05] "
+              alt={item.title}
+              width={300}
+              height={300}
+              className="w-[300px] h-[300px] transition-[transform 0.2s ease-in-out] object-cover rounded-[8px] hover:transform-scale-[1.05]"
             />
             <Link href={`/${item.category}/${item.title}/${item.id}`}>
               <h1 className="font-semibold text-[18px] text-center mt-[30px] mb-[20px] text-[#5060b2]">
