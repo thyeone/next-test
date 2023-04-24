@@ -1,8 +1,10 @@
-import { NextPage } from "next";
-import type { AppProps } from "next/app";
-import React, { ReactElement, ReactNode } from "react";
-import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
-import "../styles/globals.css";
+import { NextPage } from 'next';
+import type { AppProps } from 'next/app';
+import React, { ReactElement, ReactNode } from 'react';
+import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
+import '../styles/globals.css';
+import { store } from '../store/store';
+import { Provider } from 'react-redux';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -18,7 +20,9 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   return getLayout(
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
-        <Component {...pageProps} />
+        <Provider store={store}>
+          <Component {...pageProps} />
+        </Provider>
       </Hydrate>
     </QueryClientProvider>
   );
